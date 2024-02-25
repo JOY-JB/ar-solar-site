@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/carousel";
 const Testimonial = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B]">
-      <div className="flex flex-col ">
-        <div className="w-10/12 bg-[#484F8E] h-48 mx-auto rounded-b-[50px] flex justify-evenly text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white">
+      <div className="flex flex-col items-center w-full ">
+        <div className="w-10/12 bg-[#484F8E] h-48 rounded-b-[50px] flex justify-evenly ">
           <div className="flex flex-col items-center  justify-center">
             <h2 className="text-[40px]">Average Rating</h2>
             <span className="text-[80px]">4.7</span>
@@ -34,16 +34,23 @@ const Testimonial = () => {
       <div>
         <Image src={person1} alt="person-1" />
       </div> */}
-        <Carousel className="w-full max-w-xs mx-auto">
+        <h3 className="uppercase text-[50px] mt-[200px] mb-[70px]">
+          Testimonials
+        </h3>
+        <Carousel className=" ">
           <CarouselContent>
             {Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index}>
-                <div className="p-1">
-                  <Card>
+                <div className="rounded-full bg-white size-52 flex justify-center items-center  mx-auto">
+                  {/* <Card>
                     <CardContent className="flex aspect-square items-center justify-center p-6">
-                      <Image src={person1} alt="person-1" className="w-full" />
                     </CardContent>
-                  </Card>
+                  </Card> */}
+                  <Image
+                    src={person1}
+                    alt="person-1"
+                    className="size-48  rounded-full  object-cover"
+                  />
                 </div>
               </CarouselItem>
             ))}
