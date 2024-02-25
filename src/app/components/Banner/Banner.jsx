@@ -7,12 +7,10 @@ import aboutUs from "../../../../public/assets/images/navbar/REVIEW ICON.svg";
 const Banner = () => {
   return (
     <main
-      className="bg-cover bg-center min-w-full h-screen flex items-center justify-center"
+      className="bg-cover bg-center min-w-screen h-screen flex items-center justify-center"
       style={{
-        backgroundImage: `url(${BannerImage})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        backgroundImage: `url(${BannerImage.src})`,
+        backgroundSize: "fill",
       }}
     >
       <div className="flex justify-center items-center gap-x-[34px] mt-[80px] ml-[162px] absolute top-0 left-0 text-white  bg-[#999999]/70 rounded-[20px] py-[21px] px-[51px]">

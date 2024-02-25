@@ -52,12 +52,19 @@ const Testimonial = () => {
                     className="size-48  rounded-full  object-cover"
                   />
                 </div>
+                <p className="text-[20px] text-center mt-[22px]">John Doe</p>
               </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+        <p className="mt-[67px] text-[30px] px-32 text-center">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua.
+        </p>
       </div>
     </div>
   );
