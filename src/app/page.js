@@ -1,3 +1,4 @@
+import Footer from "./Shared/Footer/Footer";
 import Banner from "./sections/Banner/Banner";
 import Equipments from "./sections/Equipments/Equipments";
 import Process from "./sections/Process/Process";
@@ -11,6 +12,7 @@ export default function Home() {
       <Testimonial />
       <UniqueSection />
       <Equipments />
+      <Footer />
     </main>
   );
 }
