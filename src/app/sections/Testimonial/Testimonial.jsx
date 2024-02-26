@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/carousel";
 const Testimonial = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white pb-[200px]">
       <div className="flex flex-col items-center w-full ">
         <div className="w-10/12 bg-[#484F8E] h-48 rounded-b-[50px] flex justify-evenly ">
           <div className="flex flex-col items-center  justify-center">
