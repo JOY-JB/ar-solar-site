@@ -4,7 +4,7 @@ import OptimizerImage from "../../../../public/assets/images/equipments/optimize
 import Image from "next/image";
 const Equipments = () => {
   return (
-    <div className="pt-[200px]  bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white pb-[200px]">
+    <div className="py-[200px]  bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white ">
       <h1 className="text-[50px] text-center font-bold">EQUIPMENTS</h1>
       <div className="flex justify-center gap-x-[170px] mt-[75px]">
         <div className="flex flex-col items-center">
