@@ -5,9 +5,9 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-[92px]">
-      <div className="grid grid-cols-3  mx-[134px] gap-x-[20px] ">
-        <div className="col-span-1 bg-white/10 rounded-[20px] pt-[62px] pb-[105px] px-[100px]  ">
+    <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-[92px]">
+      <div className="grid grid-cols-3  mx-[134px] gap-x-[20px] relative h-fit">
+        <div className="sticky top-[92px] left-0 h-[720px] col-span-1 bg-white/10 rounded-[20px] pt-[62px] pb-[105px] px-[100px]  ">
           <h2 className="text-[30px] font-bold">Equipment</h2>
           <ul className="list-disc list-inside">
             <li>Full Installation of pv system</li>
@@ -65,7 +65,7 @@ const page = () => {
             </button>
           </div>
         </div>
-        <div className="col-span-2 bg-white/10 rounded-[20px] pt-[62px] pb-[105px] px-[134px]  ">
+        <div className="col-span-2 bg-white/10 rounded-[20px] pt-[62px] pb-[105px] px-[134px] ">
           <p className="text-xl text-center">
             MILLIONS OF PEOPLE SHIFTING TO SOLAR ENERGY, REPLACING THE
             ELECTRICITY
@@ -75,19 +75,19 @@ const page = () => {
               <TabsList className="flex gap-x-[34px]">
                 <TabsTrigger
                   value="recommended"
-                  className="text-[30px] font-bold  data-[state=inactive]:text-[#BBC1FF]/25"
+                  className="text-[30px] font-bold  data-[state=active]:text-[#BBC1FF]/25"
                 >
                   Recommended
                 </TabsTrigger>
                 <TabsTrigger
                   value="customize"
-                  className="text-[30px] font-bold data-[state=inactive]:text-[#BBC1FF]/25"
+                  className="text-[30px] font-bold data-[state=active]:text-[#BBC1FF]/25"
                 >
                   Customize
                 </TabsTrigger>
               </TabsList>
               <TabsContent value="recommended">
-                <ScrollArea className="h-[450px] w-full ">
+                <div className=" w-full ">
                   <div className="mt-[55px] grid grid-cols-2 w-full gap-x-[30px]">
                     <div className="size-[400px] rounded-[10px] overflow-hidden">
                       <Image
@@ -147,80 +147,161 @@ const page = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-[55px]">
-                    <div className="flex justify-between pr-10">
-                      <div>
-                        <h3 className="text-[30px] font-bold">Equipment</h3>
-                        <ul className="list-disc list-inside text-[#999999]">
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                        </ul>
-                      </div>
-                      <p className="text-[20px] font-bold">$400</p>
-                    </div>
-                    <div className="flex justify-between pr-10 mt-[20px]">
-                      <div>
-                        <h3 className="text-[30px] font-bold">
-                          Recurring Service
-                        </h3>
-                        <ul className="list-disc list-inside text-[#999999]">
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                        </ul>
-                      </div>
-                      <p className="text-[20px] font-bold">$400</p>
-                    </div>
-                    <div className="flex justify-between pr-10 mt-[20px]">
-                      <div>
-                        <h3 className="text-[30px] font-bold">
-                          Installation Cost
-                        </h3>
-                        <ul className="list-disc list-inside text-[#999999]">
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                          <li>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing.
-                          </li>
-                        </ul>
-                      </div>
-                      <p className="text-[20px] font-bold">$400</p>
-                    </div>
+                  <Tabs defaultValue="cash" className="">
+                    <TabsList className="flex gap-x-[34px] mt-[35px]">
+                      <TabsTrigger
+                        value="cash"
+                        className="text-[30px] font-bold  data-[state=active]:text-[#BBC1FF]/25"
+                      >
+                        Cash
+                      </TabsTrigger>
+                      <TabsTrigger
+                        value="customize"
+                        className="text-[30px] font-bold data-[state=active]:text-[#BBC1FF]/25"
+                      >
+                        Financing
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="cash">
+                      <div className="mt-[35px]">
+                        <div className="flex justify-between pr-10">
+                          <div>
+                            <h3 className="text-[30px] font-bold">Equipment</h3>
+                            <ul className="list-disc list-inside text-[#999999]">
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                            </ul>
+                          </div>
+                          <p className="text-[20px] font-bold">$400</p>
+                        </div>
+                        <div className="flex justify-between pr-10 mt-[20px]">
+                          <div>
+                            <h3 className="text-[30px] font-bold">
+                              Recurring Service
+                            </h3>
+                            <ul className="list-disc list-inside text-[#999999]">
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                            </ul>
+                          </div>
+                          <p className="text-[20px] font-bold">$400</p>
+                        </div>
+                        <div className="flex justify-between pr-10 mt-[20px]">
+                          <div>
+                            <h3 className="text-[30px] font-bold">
+                              Installation Cost
+                            </h3>
+                            <ul className="list-disc list-inside text-[#999999]">
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                              <li>
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing.
+                              </li>
+                            </ul>
+                          </div>
+                          <p className="text-[20px] font-bold">$400</p>
+                        </div>
 
-                    <hr className="h- w-full border border-white mt-5" />
-                    <div className="flex justify-between pr-10 mt-[16px]">
-                      <h3 className="text-[30px] font-bold">Total</h3>
+                        <hr className="w-full border border-white mt-5" />
+                        <div className="flex justify-between pr-10 mt-[16px]">
+                          <h3 className="text-[30px] font-bold">Total</h3>
 
-                      <p className="text-[20px] font-bold">$400</p>
-                    </div>
-                  </div>
-                </ScrollArea>
+                          <p className="text-[20px] font-bold">$400</p>
+                        </div>
+                        <div className="mt-[20px]">
+                          <h3 className="text-[30px] font-bold text-center">
+                            THE FACTS
+                          </h3>
+                          <p className="text-xl text-center mt-[20px]">
+                            More solar will be installed in the United States in
+                            the next two years than the last 40+ years combined
+                          </p>
+                          <div className="mt-[76px] grid grid-cols-3">
+                            <div className="flex flex-col items-center gap-y-[35px]">
+                              <Image
+                                src="https://picsum.photos/500/500"
+                                width={500}
+                                height={500}
+                                alt="map"
+                                className="size-[71px] rounded-full"
+                              />
+                              <p className="text-[40px]">5</p>
+                              <p className="text-[20px]">Tons of CO2 Offset</p>
+                            </div>
+                            <div className="flex flex-col items-center gap-y-[35px]">
+                              <Image
+                                src="https://picsum.photos/500/500"
+                                width={500}
+                                height={500}
+                                alt="map"
+                                className="size-[71px] rounded-full"
+                              />
+                              <p className="text-[40px]">$ 16,592</p>
+                              <p className="text-[20px] text-center px-14">
+                                Estimated Value Added to Your Home
+                              </p>
+                            </div>
+                            <div className="flex flex-col items-center gap-y-[35px]">
+                              <Image
+                                src="https://picsum.photos/500/500"
+                                width={500}
+                                height={500}
+                                alt="map"
+                                className="size-[71px] rounded-full"
+                              />
+                              <p className="text-[40px]">161</p>
+                              <p className="text-[20px] text-center px-14">
+                                Equivalent Number of Trees Planted
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </TabsContent>
+                    <TabsContent value="financing">
+                      Change your password here.
+                    </TabsContent>
+                  </Tabs>
+                </div>
               </TabsContent>
               <TabsContent value="customize">Customize</TabsContent>
             </Tabs>
