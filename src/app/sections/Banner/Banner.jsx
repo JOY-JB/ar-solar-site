@@ -1,9 +1,9 @@
 import Image from "next/image";
 import BannerImage from "../../../../public/assets/images/bannerImage.png";
 import home from "../../../../public/assets/images/navbar/HOME ICON.svg";
-import equipments from "../../../../public/assets/images/navbar/SOLAR ICON.svg";
 import facts from "../../../../public/assets/images/navbar/RECEIPT ICON.svg";
 import aboutUs from "../../../../public/assets/images/navbar/REVIEW ICON.svg";
+import equipments from "../../../../public/assets/images/navbar/SOLAR ICON.svg";
 const Banner = () => {
   return (
     <main
@@ -13,7 +13,7 @@ const Banner = () => {
         backgroundSize: "fill",
       }}
     >
-      <div className="flex justify-center items-center gap-x-[34px] mt-[80px] ml-[162px] absolute top-0 left-0 text-white  bg-[#999999]/70 rounded-[20px] py-[21px] px-[51px]">
+      <div className="hidden md:flex justify-center items-center gap-x-[34px] mt-[80px] ml-[162px] absolute top-0 left-0 text-white  bg-[#999999]/70 rounded-[20px] py-[21px] px-[51px] ">
         <div className="">
           <Image
             width={40}
@@ -51,23 +51,32 @@ const Banner = () => {
           <p className="uppercase text-xs block">ABOUT US</p>
         </div>
       </div>
-      <div className="w-fit h-96 text-white mb-[36px] flex flex-col justify-center items-center">
-        <h1 className="text-[50px] font-bold ">
+      <div className="w-fit h-screen text-white mb-[36px] flex flex-col justify-evenly md:justify-center items-center">
+        <h1 className="text-3xl md:text-4xl font-bold text-center">
           YOUR TRUSTED SOLAR PANEL PROVIDER
         </h1>
-        <p className="text-[20px] text-center">
-          MILLIONS OF PEOPLE SHIFTING TO SOLAR ENERGY, REPLACING THE
-        </p>
-        <p className="text-[20px] text-center">WIRED SOURCE</p>
-        <div className="w-full flex justify-center items-center space-x-[53px] mt-[36px]">
+        <div className="hidden md:block">
+          <p className="text-center mt-2">
+            MILLIONS OF PEOPLE SHIFTING TO SOLAR ENERGY, REPLACING THE
+          </p>
+          <p className="text-center">WIRED SOURCE</p>
+        </div>
+        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-5 md:gap-12 mt-[36px]">
           <input
             type="text"
-            className="w-[482px] h-[67px] inline rounded-[10px]  text-center"
+            className="w-96 h-[67px] inline rounded-[10px] text-center"
             placeholder="Type Your Home Address"
           />
-          <button className="w-[204px] h-[67px] bg-[#484F8E]/70 font-bold  rounded-[10px]">
+          <button className="w-96 md:w-48 h-[67px] bg-[#484F8E]/70 font-bold  rounded-[10px]">
             Get Quote
           </button>
+        </div>
+
+        <div className="block md:hidden text-sm">
+          <p className="text-center mt-2">
+            MILLIONS OF PEOPLE SHIFTING TO SOLAR ENERGY, REPLACING THE WIRED
+            SOURCE
+          </p>
         </div>
       </div>
     </main>
