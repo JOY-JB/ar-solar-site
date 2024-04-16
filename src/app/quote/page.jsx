@@ -1,3 +1,4 @@
+import CustomizeTabSection from "@/components/quote/customizeTabSection/customiseTabSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 
@@ -89,7 +90,7 @@ const page = () => {
                   <div className="mt-[55px] grid md:grid-cols-2 w-full md:gap-x-[30px]">
                     <div className="md:size-[400px] rounded-[10px] overflow-hidden">
                       <Image
-                        src="https://picsum.photos/500/500"
+                        src="/assets/images/roofImage.jpg"
                         width={500}
                         height={500}
                         alt="map"
@@ -119,7 +120,7 @@ const page = () => {
                         <h2 className="text-2xl md:text-[30px] font-bold">
                           Number of Panels
                         </h2>
-                        <p className="text-[20px]">9,711 kWh</p>
+                        <p className="text-[20px]">16</p>
                       </div>
                     </div>
                   </div>
@@ -313,7 +314,9 @@ const page = () => {
                   </Tabs>
                 </div>
               </TabsContent>
-              <TabsContent value="customize">Customize</TabsContent>
+              <TabsContent value="customize">
+                <CustomizeTabSection />
+              </TabsContent>
             </Tabs>
           </div>
         </div>
