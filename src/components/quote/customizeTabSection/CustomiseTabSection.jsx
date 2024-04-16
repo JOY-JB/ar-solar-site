@@ -1,5 +1,12 @@
 "use client";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import Image from "next/image";
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
@@ -79,12 +86,22 @@ const CustomizeTabSection = () => {
       <div className="mt-[55px]">
         <div>
           <h3 className="text-2xl md:text-[30px] font-bold">Solar Panel</h3>
-          <div
-            type="text"
-            className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 "
-          >
-            <p className="text-base">Hanwha Q.PLUS L-G4.2 340 (x16)</p>
-          </div>
+          <Select>
+            <SelectTrigger className="rounded-[10px] bg-[#BBC1FF]/25 py-[12px] md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 ">
+              <SelectValue placeholder="Hanwha Q.PLUS L-G4.2 340 (x16)" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="light">
+                Hanwha Q.PLUS L-L65.2 180 (x8)
+              </SelectItem>
+              <SelectItem value="dark">
+                Hanwha H.PLUS L-G32.2 320 (x32)
+              </SelectItem>
+              <SelectItem value="system">
+                Hanwha F.PLUS F-G4.2 340 (x16)
+              </SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <div className="mt-[17px]">
           <h3 className="text-2xl md:text-[30px] font-bold">Inverter</h3>
