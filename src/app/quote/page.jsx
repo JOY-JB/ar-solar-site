@@ -1,6 +1,6 @@
-import CustomizeTabSection from "@/components/quote/customizeTabSection/customiseTabSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
+import CustomizeTabSection from "../../components/quote/customizeTabSection/CustomiseTabSection";
 
 const page = () => {
   return (
