@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import BannerImage from "../../../../public/assets/images/bannerImage.png";
 import home from "../../../../public/assets/images/navbar/HOME ICON.svg";
 import facts from "../../../../public/assets/images/navbar/RECEIPT ICON.svg";
@@ -67,9 +68,11 @@ const Banner = () => {
             className="w-96 h-[67px] inline rounded-[10px] text-center"
             placeholder="Type Your Home Address"
           />
-          <button className="w-96 md:w-48 h-[67px] bg-[#484F8E]/70 font-bold  rounded-[10px]">
-            Get Quote
-          </button>
+          <Link href="/quote-form">
+            <button className="w-96 md:w-48 h-[67px] bg-[#484F8E]/70 font-bold  rounded-[10px]">
+              Get Quote
+            </button>
+          </Link>
         </div>
 
         <div className="block md:hidden text-sm">

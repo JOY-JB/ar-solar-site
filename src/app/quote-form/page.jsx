@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -34,9 +35,11 @@ const page = () => {
               />
             </div>
 
-            <button className="bg-[#484F8E]/50 w-full py-[27px] mt-[78px] rounded-[10px]">
-              Get Quote
-            </button>
+            <Link href="/quote">
+              <button className="bg-[#484F8E]/50 w-full py-[27px] mt-[78px] rounded-[10px]">
+                Get Quote
+              </button>
+            </Link>
           </div>
           <div className="md:pl-[20px]">
             <div>
@@ -46,7 +49,7 @@ const page = () => {
                 className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25 placeholder-white/50 text-center"
               />
             </div>
-            <div className="mt-[20px] w-full rounded-[10px] bg-red-400 overflow-hidden">
+            <div className="mt-[20px] w-full rounded-[10px] overflow-hidden">
               <Image
                 src="/assets/images/roofImage.jpg"
                 width={500}
