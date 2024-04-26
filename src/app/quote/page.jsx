@@ -105,7 +105,7 @@ const QuotePage = () => {
                 </TabsList>
                 <TabsContent value="recommended">
                   <div className="w-full">
-                    <div className="mt-[55px] grid md:grid-cols-2 w-full md:gap-x-[30px]">
+                    <div className="mt-[55px] grid md:grid-cols-2 w-full gap-x-16">
                       <div className="md:size-[400px] rounded-[10px] overflow-hidden">
                         <Image
                           src="/assets/images/roofImage.jpg"
@@ -115,30 +115,30 @@ const QuotePage = () => {
                           className="w-full"
                         />
                       </div>
-                      <div className="space-y-4 md:space-y-0 leading-7 md:leading-[50px] mt-10 md:mt-0">
-                        <div className="">
-                          <h2 className="text-2xl md:text-[30px] font-bold">
+                      <div className="space-y-5 leading-7 md:leading-[50px] mt-10 md:mt-0">
+                        <div>
+                          <h2 className="text-xl md:text-2xl font-bold">
                             Electricity Bill
                           </h2>
-                          <p className="text-[20px]">1000 Dollars</p>
+                          <p className="text-xl mt-1">1000 Dollars</p>
                         </div>
                         <div>
-                          <h2 className="text-2xl md:text-[30px] font-bold">
+                          <h2 className="text-xl md:text-2xl font-bold">
                             System Size
                           </h2>
-                          <p className="text-[20px]">5.44 kW</p>
+                          <p className="text-xl mt-1">5.44 kW</p>
                         </div>
                         <div>
-                          <h2 className="text-2xl md:text-[30px] font-bold">
+                          <h2 className="text-xl md:text-2xl font-bold">
                             Estimated Yearly Production
                           </h2>
-                          <p className="text-[20px]">9,711 kWh</p>
+                          <p className="text-xl mt-1">9,711 kWh</p>
                         </div>
                         <div>
-                          <h2 className="text-2xl md:text-[30px] font-bold">
+                          <h2 className="text-xl md:text-2xl font-bold">
                             Number of Panels
                           </h2>
-                          <p className="text-[20px]">16</p>
+                          <p className="text-xl mt-1">16</p>
                         </div>
                       </div>
                     </div>
