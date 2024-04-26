@@ -6,7 +6,7 @@ import WandImage from "../../../../public/assets/images/uniqueSection/Wand.png";
 const UniqueSection = () => {
   return (
     <div className="text-white py-[130px] bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-center">
-      <h2 className="uppercase text-[50px] font-bold">UNIQUE US</h2>
+      <h2 className="uppercase text-5xl font-bold">UNIQUE US</h2>
       <p className="text-xl md:text-2xl">
         We aspire in delivering the best and promising service to our clients
       </p>

@@ -10,7 +10,7 @@ const Process = () => {
   return (
     <div className="mt-[200px] text-white ">
       <div className="bg-[#484F8E] h-full md:w-10/12 mx-auto rounded-[50px] py-8 md:py-[110px]">
-        <h1 className="text-xl md:text-[50px] text-center font-bold uppercase">
+        <h1 className="text-xl md:text-5xl text-center font-bold uppercase mb-14">
           Process
         </h1>
         <div className="flex justify-center items-center gap-4 md:gap-x-[132px] flex-wrap mt-[38px]">

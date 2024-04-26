@@ -5,7 +5,7 @@ import Process from "../Process/Process";
 const Equipments = () => {
   return (
     <div className="py-[200px] px-4 bg-gradient-to-tl from-[#1B2025] from-20% to-[#08090B] text-white h-full ">
-      <h1 className="text-2xl md:text-[50px] text-center font-bold">
+      <h1 className="text-2xl md:text-5xl text-center font-bold uppercase mb-20">
         EQUIPMENTS
       </h1>
       <div className="flex justify-center gap-10 md:gap-x-[170px] mt-[75px]">
@@ -29,10 +29,10 @@ const Equipments = () => {
       <Process />
 
       <div className="mt-[200px]">
-        <h1 className="text-xl md:text-[50px] text-center font-bold uppercase">
+        <h1 className="text-xl md:text-5xl text-center font-bold uppercase mb-10">
           WARRANTY
         </h1>
-        <p className=" md:text-[30px] text-center">
+        <p className="md:text-2xl text-center">
           More solar will be installed in the United States in the next two
           years than the last 40+ years combinded
         </p>
