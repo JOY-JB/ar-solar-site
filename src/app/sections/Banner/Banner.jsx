@@ -1,10 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 import BannerImage from "../../../../public/assets/images/bannerImage.png";
-import home from "../../../../public/assets/images/navbar/HOME ICON.svg";
-import facts from "../../../../public/assets/images/navbar/RECEIPT ICON.svg";
-import aboutUs from "../../../../public/assets/images/navbar/REVIEW ICON.svg";
-import equipments from "../../../../public/assets/images/navbar/SOLAR ICON.svg";
 const Banner = () => {
   return (
     <main
@@ -14,7 +9,7 @@ const Banner = () => {
         backgroundSize: "fill",
       }}
     >
-      <div className="hidden md:flex justify-center items-center gap-x-[34px] mt-[80px] ml-[162px] absolute top-0 left-0 text-white  bg-[#999999]/70 rounded-[20px] py-[21px] px-[51px] ">
+      {/* <div className="hidden md:flex justify-center items-center gap-x-[34px] mt-[80px] ml-[162px] absolute top-0 left-0 text-white  bg-[#999999]/70 rounded-[20px] py-[21px] px-[51px] ">
         <div className="">
           <Image
             width={40}
@@ -51,7 +46,7 @@ const Banner = () => {
           />
           <p className="uppercase text-xs block">ABOUT US</p>
         </div>
-      </div>
+      </div> */}
       <div className="w-fit h-screen text-white mb-[36px] flex flex-col justify-evenly md:justify-center items-center">
         <h1 className="text-3xl md:text-4xl font-bold text-center">
           YOUR TRUSTED SOLAR PANEL PROVIDER
@@ -65,7 +60,7 @@ const Banner = () => {
         <div className="w-full flex flex-col md:flex-row justify-center items-center gap-5 md:gap-12 mt-[36px]">
           <input
             type="text"
-            className="w-96 h-[67px] inline rounded-[10px] text-center"
+            className="w-96 h-[67px] inline rounded-[10px] text-black text-center"
             placeholder="Type Your Home Address"
           />
           <Link href="/quote-form">
