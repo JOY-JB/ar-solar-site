@@ -53,7 +53,9 @@ const QuotePage = () => {
           </div>
           <div className="mt-[85px]">
             <div className="flex items-center gap-2 mb-4">
-              <p className="text-2xl md:text-3xl font-bold">$30,000.50</p>
+              <p className="text-2xl md:text-3xl font-bold">
+                {paymentType === "cash" ? "$30,500" : "$2,542"}
+              </p>
               <p className="text-sm md:text-lg font-bold text-[#999999]">
                 ($1.92/watt)
               </p>
@@ -202,11 +204,14 @@ const QuotePage = () => {
                   </TabsList>
                   <TabsContent value="cash">
                     <div className="mt-[35px]">
-                      <div className="flex justify-between pr-10">
-                        <div>
-                          <h3 className="text-2xl md:text-[30px] font-bold">
-                            Equipment
-                          </h3>
+                      <div className="">
+                        <div className="">
+                          <div className="flex justify-between md:pr-12 mb-3">
+                            <h3 className="text-2xl md:text-[30px] font-bold">
+                              Equipment
+                            </h3>
+                            <p className="text-[20px] font-bold">$21,000</p>
+                          </div>
                           <ul className="list-disc list-inside text-[#999999]">
                             <li>Full installation of pv system.</li>
                             <li>
@@ -215,13 +220,15 @@ const QuotePage = () => {
                             <li>Price includes all fees & sales tax.</li>
                           </ul>
                         </div>
-                        <p className="text-[20px] font-bold">$1200</p>
                       </div>
-                      <div className="flex justify-between pr-10 mt-[20px]">
+                      <div className="mt-[20px]">
                         <div>
-                          <h3 className="text-2xl md:text-[30px] font-bold">
-                            Recurring Service
-                          </h3>
+                          <div className="flex justify-between md:pr-12 mb-3">
+                            <h3 className="text-2xl md:text-[30px] font-bold">
+                              Recurring Service
+                            </h3>
+                            <p className="text-[20px] font-bold">$3,600 </p>
+                          </div>
                           <ul className="list-disc list-inside text-[#999999]">
                             <li>
                               10 Years of equipment deep-cleaning, available
@@ -241,13 +248,15 @@ const QuotePage = () => {
                             </li>
                           </ul>
                         </div>
-                        <p className="text-[20px] font-bold">$600 </p>
                       </div>
-                      <div className="flex justify-between pr-10 mt-[20px]">
+                      <div className="mt-[20px]">
                         <div>
-                          <h3 className="text-2xl md:text-[30px] font-bold">
-                            Installation Cost
-                          </h3>
+                          <div className="flex justify-between md:pr-12 mb-3">
+                            <h3 className="text-2xl md:text-[30px] font-bold">
+                              Installation Cost
+                            </h3>
+                            <p className="text-[20px] font-bold">$5,900</p>
+                          </div>
                           <ul className="list-disc list-inside text-[#999999]">
                             <li>
                               Initial site inspection and consultation to
@@ -267,16 +276,15 @@ const QuotePage = () => {
                             </li>
                           </ul>
                         </div>
-                        <p className="text-[20px] font-bold">$400</p>
                       </div>
 
                       <hr className="w-full border border-white mt-5" />
-                      <div className="flex justify-between pr-10 mt-[16px]">
+                      <div className="flex justify-between md:pr-10 mt-[16px]">
                         <h3 className="text-2xl md:text-[30px] font-bold">
                           Total
                         </h3>
 
-                        <p className="text-[20px] font-bold">$2200</p>
+                        <p className="text-[20px] font-bold">$30,500</p>
                       </div>
                     </div>
                   </TabsContent>
@@ -284,7 +292,7 @@ const QuotePage = () => {
                     <div className="mt-[35px]">
                       <div className="flex justify-between pr-10">
                         <div>
-                          <h3 className="text-2xl md:text-[30px] font-bold">
+                          <h3 className="text-2xl md:text-[30px] font-bold mb-3">
                             Equipment
                           </h3>
                           <ul className="list-disc list-inside text-[#999999]">
@@ -296,11 +304,14 @@ const QuotePage = () => {
                           </ul>
                         </div>
                       </div>
-                      <div className="flex justify-between pr-10 mt-[20px]">
-                        <div>
-                          <h3 className="text-2xl md:text-[30px] font-bold">
-                            Recurring Service
-                          </h3>
+                      <div className="mt-[20px]">
+                        <div className="">
+                          <div className="flex justify-between md:pr-4 mb-3">
+                            <h3 className="text-2xl md:text-[30px] font-bold">
+                              Recurring Service
+                            </h3>
+                            <p className="text-[20px] font-bold">(Included)</p>
+                          </div>
                           <ul className="list-disc list-inside text-[#999999]">
                             <li>
                               10 Years of equipment deep-cleaning, available
@@ -320,42 +331,15 @@ const QuotePage = () => {
                             </li>
                           </ul>
                         </div>
-                        <p className="text-[20px] font-bold">(Included)</p>
                       </div>
-                      {/* <div className="flex justify-between pr-10 mt-[20px]">
-                        <div>
-                          <h3 className="text-2xl md:text-[30px] font-bold">
-                            Installation Cost
-                          </h3>
-                          <ul className="list-disc list-inside text-[#999999]">
-                            <li>
-                              Lorem ipsum, dolor sit amet consectetur
-                              adipisicing.
-                            </li>
-                            <li>
-                              Lorem ipsum, dolor sit amet consectetur
-                              adipisicing.
-                            </li>
-                            <li>
-                              Lorem ipsum, dolor sit amet consectetur
-                              adipisicing.
-                            </li>
-                            <li>
-                              Lorem ipsum, dolor sit amet consectetur
-                              adipisicing.
-                            </li>
-                          </ul>
-                        </div>
-                        <p className="text-[20px] font-bold">$400</p>
-                      </div> */}
 
                       <hr className="w-full border border-white mt-5" />
-                      <div className="flex justify-between pr-10 mt-[16px]">
+                      <div className="flex justify-between md:pr-10 mt-[16px]">
                         <h3 className="text-2xl md:text-[30px] font-bold">
-                          Monthly Financing Cost
+                          Monthly Cost
                         </h3>
 
-                        <p className="text-[20px] font-bold">$400</p>
+                        <p className="text-[20px] font-bold">$2,542</p>
                       </div>
                     </div>
                   </TabsContent>
