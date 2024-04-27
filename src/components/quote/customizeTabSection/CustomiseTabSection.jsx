@@ -44,7 +44,7 @@ const CustomizeTabSection = () => {
             className="w-full"
           />
         </div>
-        <div className="space-y-4 md:space-y-0 leading-7 md:leading-[50px] mt-10 md:mt-0">
+        {/* <div className="space-y-4 md:space-y-0 leading-7 md:leading-[50px] mt-10 md:mt-0">
           <div className="">
             <h2 className="text-2xl md:text-[30px] font-bold">
               Electricity Bill
@@ -65,6 +65,40 @@ const CustomizeTabSection = () => {
             <h2 className="text-2xl md:text-[30px] font-bold">
               Number of Panels
             </h2>
+            <div className="bg-[#BBC1FF]/25 w-fit rounded-xl mt-4">
+              <button className="p-4" onClick={handleDecrement}>
+                <FaMinus />
+              </button>
+              <input
+                type="number"
+                min={0}
+                value={numberOfPanel}
+                readOnly
+                className="w-20 bg-transparent outline-none border-0 text-center text-xl"
+              />
+              <button className="p-4" onClick={handleIncrement}>
+                <FaPlus />
+              </button>
+            </div>
+          </div>
+        </div> */}
+        <div className="space-y-5 leading-7 md:leading-[50px] mt-10 md:mt-0">
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold">Electricity Bill</h2>
+            <p className="text-xl mt-1">1000 Dollars</p>
+          </div>
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold">System Size</h2>
+            <p className="text-xl mt-1">5.44 kW</p>
+          </div>
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold">
+              Estimated Yearly Production
+            </h2>
+            <p className="text-xl mt-1">9,711 kWh</p>
+          </div>
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold">Number of Panels</h2>
             <div className="bg-[#BBC1FF]/25 w-fit rounded-xl mt-4">
               <button className="p-4" onClick={handleDecrement}>
                 <FaMinus />
