@@ -151,9 +151,9 @@ const QuotePage = () => {
                         </h3>
                         <div
                           type="text"
-                          className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 "
+                          className="block rounded-[10px] bg-[#BBC1FF]/25 py-2 md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 "
                         >
-                          <p className="text-base">
+                          <p className="text-sm">
                             Hanwha Q.PLUS L-G4.2 340 (x16)
                           </p>
                         </div>
@@ -164,9 +164,9 @@ const QuotePage = () => {
                         </h3>
                         <div
                           type="text"
-                          className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 "
+                          className="block rounded-[10px] bg-[#BBC1FF]/25 py-2 md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 "
                         >
-                          <p className="text-base">
+                          <p className="text-sm">
                             Enphase IQ7PLUS-72-2- US(x16)
                           </p>
                         </div>

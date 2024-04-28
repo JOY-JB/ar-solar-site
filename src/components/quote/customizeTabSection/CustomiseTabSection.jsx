@@ -34,7 +34,7 @@ const CustomizeTabSection = () => {
 
   return (
     <div className="w-full">
-      <div className="mt-[55px] grid md:grid-cols-2 w-full md:gap-x-[30px]">
+      <div className="mt-[55px] grid md:grid-cols-2 w-full gap-x-16">
         <div className="md:size-[400px] rounded-[10px] overflow-hidden">
           <Image
             src="/assets/images/roofImage.jpg"
