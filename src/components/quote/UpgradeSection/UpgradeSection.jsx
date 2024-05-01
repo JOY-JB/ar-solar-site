@@ -14,42 +14,41 @@ const UpgradeCard = () => {
       description:
         "Installation of a 240V outlet for your electric vehicle charger.",
       price: 1000,
-      image: "https://picsum.photos/200/300",
+      image: "/assets/images/upgrade/1.png",
     },
     {
       title: "Smart Thermostat",
       description:
         "Installation of a smart thermostat to help you save energy.",
       price: 500,
-      image: "https://picsum.photos/200/300",
+      image: "/assets/images/upgrade/2.jpg",
     },
     {
       title: "Smart Lock",
       description: "Installation of a smart lock to help you secure your home.",
       price: 300,
-      image: "https://picsum.photos/200/300",
+      image: "/assets/images/upgrade/3.jpg",
     },
     {
       title: "Smart Lights",
       description: "Installation of smart lights to help you save energy.",
       price: 200,
-      image: "https://picsum.photos/200/300",
+      image: "/assets/images/upgrade/4.jpg",
     },
     {
       title: "Smart Blinds",
       description: "Installation of smart blinds to help you save energy.",
       price: 200,
-      image: "https://picsum.photos/200/300",
+      image: "/assets/images/upgrade/5.jpg",
     },
     {
       title: "Smart Plugs",
       description: "Installation of smart plugs to help you save energy.",
       price: 200,
-      image: "https://picsum.photos/200/300",
+      image: "/assets/images/upgrade/6.jpg",
     },
   ];
 
-  const timeStamp = new Date().getTime();
   const [checkedItems, setCheckedItems] = useState(
     new Array(data.length).fill(false)
   );
@@ -62,11 +61,11 @@ const UpgradeCard = () => {
 
   return (
     <div className="bg-white/10 rounded-[20px] md:p-16 md:px-[134px] p-8 mt-8 relative right-0">
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid md:grid-cols-2 gap-4">
         {data.map((item, index) => (
           <label
             key={index}
-            className="group relative border border-white/10 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
+            className="group relative border border-white/10 p-2 md:p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all cursor-pointer"
           >
             <input
               type="checkbox"
@@ -86,7 +85,7 @@ const UpgradeCard = () => {
                 <div>
                   <div className="flex justify-between items-center mb-1">
                     <h3
-                      className="text-lg font-bold text-white truncate"
+                      className="md:text-lg font-bold text-white truncate"
                       style={{ maxWidth: "70%" }}
                     >
                       {item.title}
@@ -95,7 +94,7 @@ const UpgradeCard = () => {
                       ${item.price}
                     </h3>
                   </div>
-                  <p className="text-sm text-white/60 text-justify">
+                  <p className="text-sm text-white/60 md:text-justify">
                     {item.description}
                   </p>
                 </div>
@@ -105,8 +104,7 @@ const UpgradeCard = () => {
                 alt={item.title}
                 width={50}
                 height={0}
-                className="object-cover rounded-md"
-                style={{ height: "auto" }}
+                className="w-12 h-16 object-cover rounded-md bg-white/30"
               />
             </div>
             <div className="absolute inset-0 peer-checked:bg-white/20 rounded-xl transition-all"></div>
