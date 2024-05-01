@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import GooglePlacesComponent from "./GooglePlacesComponent";
 
 const page = () => {
   return (
@@ -42,21 +42,22 @@ const page = () => {
             </Link>
           </div>
           <div className="md:pl-[20px]">
-            <div>
+            {/* <div>
               <input
                 placeholder="Home Address"
                 type="text"
                 className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25 placeholder-white/50 text-center"
               />
-            </div>
+            </div> */}
             <div className="mt-[20px] w-full rounded-[10px] overflow-hidden">
-              <Image
+              {/* <Image
                 src="/assets/images/roofImage.jpg"
                 width={500}
                 height={500}
                 alt="map"
                 className="w-full"
-              />
+              /> */}
+              <GooglePlacesComponent />
             </div>
           </div>
         </form>
