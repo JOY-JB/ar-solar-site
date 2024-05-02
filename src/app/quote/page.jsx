@@ -1,14 +1,50 @@
 "use client";
 
+import { defaultLatLng } from "@/Shared/DefaultData";
 import UpgradeSection from "@/components/quote/UpgradeSection/UpgradeSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CustomizeTabSection from "../../components/quote/customizeTabSection/CustomiseTabSection";
 
 const QuotePage = () => {
   const [isRecommended, setIsRecommended] = useState(true);
   const [paymentType, setPaymentType] = useState("cash");
+  const [quoteData, setQuoteData] = useState(null);
+  const [myLatLng, setMyLatLng] = useState(null);
+  const [bill, setBill] = useState(100);
+  const [unitPrice, setUnitPrice] = useState(0.12);
+  const [totalKWH, setTotalKWH] = useState(0);
+  const [panelKWH, setPanelKWH] = useState(0);
+
+  const fetchQuoteData = useCallback(async () => {
+    if (myLatLng && myLatLng.lat && myLatLng.lng) {
+      const data = await fetch(
+        `https://solar-ai-nextjs-sandy.vercel.app/quote?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=10000`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": true,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => setQuoteData(data));
+    }
+  }, [myLatLng]);
+
+  useEffect(() => {
+    const latLng = JSON.parse(localStorage.getItem("latLng"));
+
+    if (latLng) {
+      setMyLatLng(latLng);
+    } else {
+      setMyLatLng(defaultLatLng);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchQuoteData();
+  }, [fetchQuoteData]);
 
   return (
     <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-8 px-4 md:py-[92px]">

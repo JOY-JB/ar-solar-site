@@ -1,7 +1,33 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import GooglePlacesComponent from "./GooglePlacesComponent";
 
-const page = () => {
+const QuoteFormPage = () => {
+  const [data, setData] = useState({ name: "", email: "", bill: "" });
+  const router = useRouter();
+
+  const handleGetQuote = (e) => {
+    e.preventDefault();
+
+    if (data.name === "" || data.email === "" || data.bill === "") {
+      alert("Please fill all the fields");
+      return;
+    } else if (parseInt(data.bill) < 1) {
+      alert("Please enter a valid bill amount");
+      return;
+    }
+
+    localStorage.setItem("quoteData", JSON.stringify(data));
+
+    router.push("/quote");
+  };
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white md:py-[92px]">
       <div className="pt-[62px] pb-[105px] px-4 md:px-[134px] md:rounded-[20px] mx-[6] md:mx-[134px] bg-white/10 ">
@@ -18,6 +44,8 @@ const page = () => {
               <input
                 type="text"
                 className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25"
+                name="name"
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -25,6 +53,8 @@ const page = () => {
               <input
                 type="email"
                 className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25"
+                name="email"
+                onChange={handleChange}
               />
             </div>
             <div>
@@ -32,14 +62,17 @@ const page = () => {
               <input
                 type="number"
                 className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25"
+                name="bill"
+                onChange={handleChange}
               />
             </div>
 
-            <Link href="/quote">
-              <button className="bg-[#484F8E]/50 w-full py-[27px] mt-[78px] rounded-[10px]">
-                Get Quote
-              </button>
-            </Link>
+            <button
+              className="bg-[#484F8E]/50 w-full py-[27px] mt-[78px] rounded-[10px]"
+              onClick={handleGetQuote}
+            >
+              Get Quote
+            </button>
           </div>
           <div className="md:pl-[20px]">
             {/* <div>
@@ -66,4 +99,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default QuoteFormPage;

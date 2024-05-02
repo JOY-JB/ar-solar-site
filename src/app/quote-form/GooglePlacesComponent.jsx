@@ -1,19 +1,17 @@
 "use client";
 
+import { defaultLatLng } from "@/Shared/DefaultData";
 import {
   GoogleMap,
   LoadScript,
   StandaloneSearchBox,
 } from "@react-google-maps/api";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const GooglePlacesComponent = () => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const searchBox = useRef(null);
-  const [latLng, setLatLng] = useState({
-    lat: 25.832692041500977,
-    lng: -80.27256156612488,
-  });
+  const [latLng, setLatLng] = useState(defaultLatLng);
 
   const handlePlacesChanged = (e) => {
     const places = searchBox.current.getPlaces();
@@ -27,6 +25,10 @@ const GooglePlacesComponent = () => {
       });
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem("latLng", JSON.stringify(latLng));
+  }, [latLng]);
 
   return (
     <>
