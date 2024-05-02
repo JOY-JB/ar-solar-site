@@ -28,8 +28,6 @@ const GooglePlacesComponent = () => {
     }
   };
 
-  console.log(latLng);
-
   return (
     <>
       <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
