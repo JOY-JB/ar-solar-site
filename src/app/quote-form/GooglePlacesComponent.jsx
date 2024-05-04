@@ -4,6 +4,7 @@ import { defaultLatLng } from "@/Shared/DefaultData";
 import {
   GoogleMap,
   LoadScript,
+  Marker,
   StandaloneSearchBox,
 } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +13,7 @@ const GooglePlacesComponent = () => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const searchBox = useRef(null);
   const [latLng, setLatLng] = useState(defaultLatLng);
+  const [marker, setMarker] = useState(defaultLatLng);
 
   const handlePlacesChanged = (e) => {
     const places = searchBox.current.getPlaces();
@@ -19,16 +21,27 @@ const GooglePlacesComponent = () => {
     if (places.length > 0) {
       const place = places[0];
 
-      setLatLng({
+      const newLatLng = {
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng(),
-      });
+      };
+      setLatLng(newLatLng);
+      setMarker(newLatLng);
     }
   };
 
+  const handleMapClick = (event) => {
+    const newLatLng = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    };
+
+    setMarker(newLatLng);
+  };
+
   useEffect(() => {
-    localStorage.setItem("latLng", JSON.stringify(latLng));
-  }, [latLng]);
+    localStorage.setItem("latLng", JSON.stringify(marker));
+  }, [marker]);
 
   return (
     <>
@@ -47,7 +60,13 @@ const GooglePlacesComponent = () => {
           mapContainerStyle={{ height: "400px", width: "800px" }}
           center={latLng}
           zoom={19}
-        ></GoogleMap>
+        >
+          <Marker
+            position={marker}
+            draggable={true}
+            onDragEnd={handleMapClick}
+          />
+        </GoogleMap>
       </LoadScript>
     </>
   );
