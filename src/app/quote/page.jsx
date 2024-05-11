@@ -4,23 +4,36 @@ import { defaultLatLng } from "@/Shared/DefaultData";
 import UpgradeSection from "@/components/quote/UpgradeSection/UpgradeSection";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import CustomizeTabSection from "../../components/quote/customizeTabSection/CustomiseTabSection";
 
 const QuotePage = () => {
   const [isRecommended, setIsRecommended] = useState(true);
+  const [panelConfig, setPanelConfig] = useState(null);
   const [paymentType, setPaymentType] = useState("cash");
   const [quoteData, setQuoteData] = useState(null);
   const [myLatLng, setMyLatLng] = useState(null);
-  const [bill, setBill] = useState(100);
   const [unitPrice, setUnitPrice] = useState(0.12);
   const [totalKWH, setTotalKWH] = useState(0);
-  const [panelKWH, setPanelKWH] = useState(0);
+  const [panelCount, setPanelCount] = useState(0);
+  const [systemSize, setSystemSize] = useState(0);
+  const [yearlyProduction, setYearlyProduction] = useState(0);
+
+  const router = useRouter();
 
   const fetchQuoteData = useCallback(async () => {
-    if (myLatLng && myLatLng.lat && myLatLng.lng) {
+    if (
+      myLatLng &&
+      myLatLng.lat &&
+      myLatLng.lng &&
+      quoteData &&
+      quoteData.bill
+    ) {
       const data = await fetch(
-        `https://solar-ai-nextjs-sandy.vercel.app/quote?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=10000`,
+        `https://fd60-45-127-50-28.ngrok-free.app/getImage?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=${quoteData.bill}`,
         {
           headers: {
             "ngrok-skip-browser-warning": true,
@@ -28,23 +41,65 @@ const QuotePage = () => {
         }
       )
         .then((res) => res.json())
-        .then((data) => setQuoteData(data));
+        .then((data) => setPanelConfig(data));
     }
   }, [myLatLng]);
 
   useEffect(() => {
     const latLng = JSON.parse(localStorage.getItem("latLng"));
+    const quoteData = JSON.parse(localStorage.getItem("quoteData"));
+
+    if (!quoteData) {
+      toast("Please Provide Your Information First!", {
+        onClose: () => {
+          router.push("/quote-form");
+        },
+      });
+
+      return;
+    }
 
     if (latLng) {
       setMyLatLng(latLng);
     } else {
       setMyLatLng(defaultLatLng);
     }
+
+    setQuoteData(quoteData);
   }, []);
 
   useEffect(() => {
     fetchQuoteData();
   }, [fetchQuoteData]);
+
+  useEffect(() => {
+    const kWh = quoteData?.bill / unitPrice;
+    const kW = kWh / (30 * 24);
+
+    const EYP = kWh * 12;
+
+    setYearlyProduction(EYP);
+
+    setSystemSize(kW.toFixed(2));
+  }, [quoteData, unitPrice]);
+
+  useEffect(() => {
+    if (panelConfig) {
+      const totalKWH = panelConfig?.pixel_coordinates.reduce(
+        (acc, panel, index) => {
+          if (yearlyProduction < acc) {
+            return acc;
+          }
+
+          setPanelCount(index + 1);
+          return acc + panel.yearlyEnergyDcKwh;
+        },
+        0
+      );
+
+      setTotalKWH(parseInt(totalKWH));
+    }
+  }, [panelConfig]);
 
   return (
     <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-8 px-4 md:py-[92px]">
@@ -163,25 +218,27 @@ const QuotePage = () => {
                           <h2 className="text-xl md:text-2xl font-bold">
                             Electricity Bill
                           </h2>
-                          <p className="text-xl mt-1">1000 Dollars</p>
+                          <p className="text-xl mt-1">
+                            {quoteData?.bill || 0} Dollars
+                          </p>
                         </div>
                         <div>
                           <h2 className="text-xl md:text-2xl font-bold">
                             System Size
                           </h2>
-                          <p className="text-xl mt-1">5.44 kW</p>
+                          <p className="text-xl mt-1">{systemSize} kW</p>
                         </div>
                         <div>
                           <h2 className="text-xl md:text-2xl font-bold">
                             Estimated Yearly Production
                           </h2>
-                          <p className="text-xl mt-1">9,711 kWh</p>
+                          <p className="text-xl mt-1">{totalKWH} kWh</p>
                         </div>
                         <div>
                           <h2 className="text-xl md:text-2xl font-bold">
                             Number of Panels
                           </h2>
-                          <p className="text-xl mt-1">16</p>
+                          <p className="text-xl mt-1">{panelCount}</p>
                         </div>
                       </div>
                     </div>
@@ -216,7 +273,12 @@ const QuotePage = () => {
                   </div>
                 </TabsContent>
                 <TabsContent value="customize">
-                  <CustomizeTabSection />
+                  <CustomizeTabSection
+                    quoteData={quoteData}
+                    unitPrice={unitPrice}
+                    setUnitPrice={setUnitPrice}
+                    systemSize={systemSize}
+                  />
                 </TabsContent>
               </Tabs>
             </div>

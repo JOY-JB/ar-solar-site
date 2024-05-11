@@ -1,4 +1,4 @@
-import Link from "next/link";
+import QuoteForm from "@/components/quoteForm/QuoteForm";
 import BannerImage from "../../../../public/assets/images/bannerImage.png";
 const Banner = () => {
   return (
@@ -47,7 +47,7 @@ const Banner = () => {
           <p className="uppercase text-xs block">ABOUT US</p>
         </div>
       </div> */}
-      <div className="w-fit h-screen text-white mb-[36px] flex flex-col justify-evenly md:justify-center items-center">
+      <div className="h-screen text-white mb-[36px] flex flex-col justify-evenly md:justify-center items-center bg-black/40">
         <h1 className="text-3xl md:text-4xl font-bold text-center">
           YOUR TRUSTED SOLAR PANEL PROVIDER
         </h1>
@@ -57,7 +57,7 @@ const Banner = () => {
           </p>
           <p className="text-center">WIRED SOURCE</p>
         </div>
-        <div className="w-full flex flex-col md:flex-row justify-center items-center gap-5 md:gap-12 mt-[36px]">
+        {/* <div className="w-full flex flex-col md:flex-row justify-center items-center gap-5 md:gap-12 mt-[36px]">
           <input
             type="text"
             className="w-96 h-[67px] inline rounded-[10px] text-black text-center"
@@ -68,7 +68,9 @@ const Banner = () => {
               Get Quote
             </button>
           </Link>
-        </div>
+        </div> */}
+
+        <QuoteForm />
 
         <div className="block md:hidden text-sm">
           <p className="text-center mt-2">

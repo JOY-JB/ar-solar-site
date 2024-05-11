@@ -50,11 +50,14 @@ const GooglePlacesComponent = () => {
           onLoad={(ref) => (searchBox.current = ref)}
           onPlacesChanged={handlePlacesChanged}
         >
-          <input
-            type="text"
-            placeholder="Search for places"
-            className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25 placeholder-white/50 text-center mb-4 outline-none"
-          />
+          <div>
+            <label>Home Address</label>
+            <input
+              type="text"
+              placeholder="Search for places"
+              className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25 placeholder-white/50 text-center mb-4 outline-none"
+            />
+          </div>
         </StandaloneSearchBox>
         <GoogleMap
           mapContainerStyle={{ height: "400px", width: "800px" }}

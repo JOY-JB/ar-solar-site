@@ -11,7 +11,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
-const CustomizeTabSection = () => {
+const CustomizeTabSection = ({
+  quoteData,
+  unitPrice,
+  setUnitPrice,
+  systemSize,
+}) => {
   const [numberOfPanel, setNumberOfPanel] = useState(16);
 
   const handleIncrement = () => {
@@ -85,11 +90,21 @@ const CustomizeTabSection = () => {
         <div className="space-y-5 leading-7 md:leading-[50px] mt-10 md:mt-0">
           <div>
             <h2 className="text-xl md:text-2xl font-bold">Electricity Bill</h2>
-            <p className="text-xl mt-1">1000 Dollars</p>
+            <p className="text-xl mt-1">{quoteData?.bill || 0} Dollars</p>
+          </div>
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold">Unit Price</h2>
+            <input
+              type="number"
+              min={0}
+              value={unitPrice}
+              onChange={(e) => setUnitPrice(e.target.value)}
+              className="outline-none p-1 rounded-md border border-gray-100 bg-transparent text-xl"
+            />
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold">System Size</h2>
-            <p className="text-xl mt-1">5.44 kW</p>
+            <p className="text-xl mt-1">{systemSize} kW</p>
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold">
