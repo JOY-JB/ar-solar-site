@@ -25,8 +25,16 @@ const QuotePage = () => {
   const [systemSize, setSystemSize] = useState(0);
   const [yearlyProduction, setYearlyProduction] = useState(0);
   const [solarType, setSolarType] = useState(0);
+  const [cost, setCost] = useState({
+    equipment: 0,
+    installationCost: 0,
+  });
 
   const router = useRouter();
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   const fetchQuoteData = useCallback(async () => {
     if (
@@ -136,6 +144,17 @@ const QuotePage = () => {
       setInitialCount(false);
     }
   }, [solarType, panelConfig, yearlyProduction]);
+
+  useEffect(() => {
+    const equipmentCost = 2.8 * (panelCount * (solarType === "0" ? 400 : 600));
+    const formattedEquipmentCost = equipmentCost.toFixed(0);
+    const installationCost = (0.25 * equipmentCost).toFixed(0);
+
+    setCost({
+      equipment: formattedEquipmentCost,
+      installationCost: installationCost,
+    });
+  }, [panelCount]);
 
   return (
     <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-8 px-4 md:py-[92px]">
@@ -366,7 +385,9 @@ const QuotePage = () => {
                         <h3 className="text-2xl md:text-[30px] font-bold">
                           Equipment
                         </h3>
-                        <p className="text-[20px] font-bold">$21,000</p>
+                        <p className="text-[20px] font-bold">
+                          ${numberWithCommas(cost.equipment)}
+                        </p>
                       </div>
                       <ul className="list-disc list-inside text-[#999999]">
                         <li>Full installation of pv system.</li>
@@ -381,7 +402,7 @@ const QuotePage = () => {
                         <h3 className="text-2xl md:text-[30px] font-bold">
                           Recurring Service
                         </h3>
-                        <p className="text-[20px] font-bold">$3,600 </p>
+                        <p className="text-[20px] font-bold">$0</p>
                       </div>
                       <ul className="list-disc list-inside text-[#999999]">
                         <li>
@@ -409,7 +430,9 @@ const QuotePage = () => {
                         <h3 className="text-2xl md:text-[30px] font-bold">
                           Installation Cost
                         </h3>
-                        <p className="text-[20px] font-bold">$5,900</p>
+                        <p className="text-[20px] font-bold">
+                          ${numberWithCommas(cost?.installationCost)}
+                        </p>
                       </div>
                       <ul className="list-disc list-inside text-[#999999]">
                         <li>
@@ -436,7 +459,13 @@ const QuotePage = () => {
                   <div className="flex justify-between md:pr-10 mt-[16px]">
                     <h3 className="text-2xl md:text-[30px] font-bold">Total</h3>
 
-                    <p className="text-[20px] font-bold">$30,500</p>
+                    <p className="text-[20px] font-bold">
+                      $
+                      {numberWithCommas(
+                        parseFloat(cost.equipment) +
+                          parseFloat(cost.installationCost)
+                      )}
+                    </p>
                   </div>
                 </div>
               </TabsContent>
