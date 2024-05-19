@@ -21,6 +21,10 @@ const CustomizeTabSection = ({
   setBill,
   setPanelCount,
   maxPanelCount,
+  imageURL,
+  solarTypeList,
+  solarType,
+  setSolarType,
 }) => {
   // const [numberOfPanel, setNumberOfPanel] = useState(panelCount);
 
@@ -47,7 +51,8 @@ const CustomizeTabSection = ({
       <div className="mt-[55px] grid md:grid-cols-2 w-full gap-x-16">
         <div className="md:size-[400px] rounded-[10px] overflow-hidden">
           <Image
-            src="/assets/images/roofImage.jpg"
+            // src="/assets/images/roofImage.jpg"
+            src={imageURL}
             width={500}
             height={500}
             alt="map"
@@ -124,7 +129,9 @@ const CustomizeTabSection = ({
             <h2 className="text-xl md:text-2xl font-bold">
               Estimated Yearly Production
             </h2>
-            <p className="text-xl mt-1">{totalKWH} kWh</p>
+            <p className="text-xl mt-1">
+              {solarType == "0" ? totalKWH : totalKWH * 1.375} kWh
+            </p>
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold">Number of Panels</h2>
@@ -150,20 +157,16 @@ const CustomizeTabSection = ({
       <div className="mt-[55px]">
         <div>
           <h3 className="text-2xl md:text-[30px] font-bold">Solar Panel</h3>
-          <Select>
+          <Select onValueChange={(e) => setSolarType(e)}>
             <SelectTrigger className="rounded-[10px] bg-[#BBC1FF]/25 py-[12px] md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 ">
-              <SelectValue placeholder="Hanwha Q.PLUS L-G4.2 340 (x16)" />
+              <SelectValue placeholder="Residential - 60 Cells" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="light">
-                Hanwha Q.PLUS L-L65.2 180 (x8)
-              </SelectItem>
-              <SelectItem value="dark">
-                Hanwha H.PLUS L-G32.2 320 (x32)
-              </SelectItem>
-              <SelectItem value="system">
-                Hanwha F.PLUS F-G4.2 340 (x16)
-              </SelectItem>
+              {solarTypeList.map((type, index) => (
+                <SelectItem key={index} value={index}>
+                  {type}
+                </SelectItem>
+              ))}
             </SelectContent>
           </Select>
         </div>

@@ -11,6 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import CustomizeTabSection from "../../components/quote/customizeTabSection/CustomiseTabSection";
 
 const QuotePage = () => {
+  const solarTypeList = ["Residential - 60 Cells", "Commercial - 72 Cells"];
+
   const [isRecommended, setIsRecommended] = useState(true);
   const [initialCount, setInitialCount] = useState(true);
   const [panelConfig, setPanelConfig] = useState(null);
@@ -22,6 +24,7 @@ const QuotePage = () => {
   const [panelCount, setPanelCount] = useState(0);
   const [systemSize, setSystemSize] = useState(0);
   const [yearlyProduction, setYearlyProduction] = useState(0);
+  const [solarType, setSolarType] = useState(0);
 
   const router = useRouter();
 
@@ -79,7 +82,7 @@ const QuotePage = () => {
 
     const EYP = kWh * 12;
 
-    setYearlyProduction(EYP);
+    setYearlyProduction(EYP.toFixed(0));
 
     setSystemSize(kW.toFixed(2));
   }, [quoteData, unitPrice]);
@@ -110,11 +113,29 @@ const QuotePage = () => {
         totalKWH += value.yearlyEnergyDcKwh;
       });
 
-      console.log("totalKWH", totalKWH);
-
       setTotalKWH(parseInt(totalKWH));
     }
   }, [panelConfig, yearlyProduction, panelCount, initialCount]);
+
+  useEffect(() => {
+    if (panelConfig) {
+      const totalKWH = panelConfig?.all_pixel_coordinates.reduce(
+        (acc, panel, index) => {
+          if (yearlyProduction < acc) {
+            return acc;
+          }
+
+          setPanelCount(index + 1);
+          return acc + (solarType == "0" ? 1 : 1.375) * panel.yearlyEnergyDcKwh;
+        },
+        0
+      );
+
+      setTotalKWH(parseInt(totalKWH));
+
+      setInitialCount(false);
+    }
+  }, [solarType, panelConfig, yearlyProduction]);
 
   return (
     <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-8 px-4 md:py-[92px]">
@@ -221,7 +242,8 @@ const QuotePage = () => {
                     <div className="mt-[55px] grid md:grid-cols-2 w-full gap-x-16">
                       <div className="md:size-[400px] rounded-[10px] overflow-hidden">
                         <Image
-                          src="/assets/images/roofImage.jpg"
+                          // src="/assets/images/roofImage.jpg"
+                          src={panelConfig?.imageURL}
                           width={500}
                           height={500}
                           alt="map"
@@ -247,7 +269,9 @@ const QuotePage = () => {
                           <h2 className="text-xl md:text-2xl font-bold">
                             Estimated Yearly Production
                           </h2>
-                          <p className="text-xl mt-1">{totalKWH} kWh</p>
+                          <p className="text-xl mt-1">
+                            {solarType == "0" ? totalKWH : totalKWH * 1.375} kWh
+                          </p>
                         </div>
                         <div>
                           <h2 className="text-xl md:text-2xl font-bold">
@@ -266,9 +290,7 @@ const QuotePage = () => {
                           type="text"
                           className="block rounded-[10px] bg-[#BBC1FF]/25 py-2 md:w-3/5  pl-[10px] border border-[#BBC1FF]/25 "
                         >
-                          <p className="text-sm">
-                            Hanwha Q.PLUS L-G4.2 340 (x16)
-                          </p>
+                          <p className="text-sm">{solarTypeList[solarType]}</p>
                         </div>
                       </div>
                       <div className="mt-[17px]">
@@ -300,6 +322,10 @@ const QuotePage = () => {
                     }
                     setPanelCount={setPanelCount}
                     maxPanelCount={panelConfig?.all_pixel_coordinates.length}
+                    imageURL={panelConfig?.imageURL}
+                    solarTypeList={solarTypeList}
+                    solarType={solarType}
+                    setSolarType={setSolarType}
                   />
                 </TabsContent>
               </Tabs>
