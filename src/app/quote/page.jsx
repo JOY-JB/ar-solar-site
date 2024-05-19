@@ -29,6 +29,7 @@ const QuotePage = () => {
     equipment: 0,
     installationCost: 0,
   });
+  const [upgradeCost, setUpgradeCost] = useState(0);
 
   const router = useRouter();
 
@@ -154,7 +155,7 @@ const QuotePage = () => {
       equipment: formattedEquipmentCost,
       installationCost: installationCost,
     });
-  }, [panelCount]);
+  }, [panelCount, solarType, cost.equipment]);
 
   return (
     <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-8 px-4 md:py-[92px]">
@@ -202,7 +203,13 @@ const QuotePage = () => {
           <div className="mt-[85px]">
             <div className="flex items-center gap-2 mb-4">
               <p className="text-2xl md:text-3xl font-bold">
-                {paymentType === "cash" ? "$30,500" : "$2,542"}
+                {paymentType === "cash"
+                  ? numberWithCommas(
+                      parseFloat(cost.equipment) +
+                        parseFloat(cost.installationCost) +
+                        upgradeCost
+                    )
+                  : "$2,542"}
               </p>
               <p className="text-sm md:text-lg font-bold text-[#999999]">
                 ($1.92/watt)
@@ -353,7 +360,7 @@ const QuotePage = () => {
           {/* first card end */}
 
           {/* second card start */}
-          <UpgradeSection />
+          <UpgradeSection setUpgradeCost={setUpgradeCost} />
           {/* second card end */}
 
           {/* third card start */}
@@ -454,6 +461,18 @@ const QuotePage = () => {
                       </ul>
                     </div>
                   </div>
+                  <div className="mt-[20px]">
+                    <div>
+                      <div className="flex justify-between md:pr-12 mb-3">
+                        <h3 className="text-2xl md:text-[30px] font-bold">
+                          Upgradation Cost
+                        </h3>
+                        <p className="text-[20px] font-bold">
+                          ${numberWithCommas(upgradeCost)}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
 
                   <hr className="w-full border border-white mt-5" />
                   <div className="flex justify-between md:pr-10 mt-[16px]">
@@ -463,7 +482,8 @@ const QuotePage = () => {
                       $
                       {numberWithCommas(
                         parseFloat(cost.equipment) +
-                          parseFloat(cost.installationCost)
+                          parseFloat(cost.installationCost) +
+                          upgradeCost
                       )}
                     </p>
                   </div>

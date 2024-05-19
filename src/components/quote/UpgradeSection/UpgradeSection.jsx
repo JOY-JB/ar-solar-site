@@ -7,7 +7,7 @@ import {
   RiCheckboxCircleLine,
 } from "react-icons/ri";
 
-const UpgradeCard = () => {
+const UpgradeCard = ({ setUpgradeCost }) => {
   const data = [
     {
       title: "EV Charger",
@@ -56,7 +56,17 @@ const UpgradeCard = () => {
   const handleCheckChange = (index) => {
     const updatedCheckedItems = [...checkedItems];
     updatedCheckedItems[index] = !updatedCheckedItems[index];
+
     setCheckedItems(updatedCheckedItems);
+
+    setUpgradeCost(
+      updatedCheckedItems.reduce((acc, curr, index) => {
+        if (curr) {
+          return acc + data[index].price;
+        }
+        return acc;
+      }, 0)
+    );
   };
 
   return (
