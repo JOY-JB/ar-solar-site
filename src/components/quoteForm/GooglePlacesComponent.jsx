@@ -9,7 +9,7 @@ import {
 } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
 
-const GooglePlacesComponent = () => {
+const GooglePlacesComponent = ({ homeAddress }) => {
   const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const searchBox = useRef(null);
   const [latLng, setLatLng] = useState(defaultLatLng);
@@ -27,6 +27,7 @@ const GooglePlacesComponent = () => {
       };
       setLatLng(newLatLng);
       setMarker(newLatLng);
+      homeAddress(place.formatted_address);
     }
   };
 
@@ -55,7 +56,7 @@ const GooglePlacesComponent = () => {
             <input
               type="text"
               placeholder="Search for places"
-              className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] pl-[10px] border border-[#BBC1FF]/25 placeholder-white/50 text-center mb-4 outline-none"
+              className="block rounded-[10px] bg-[#BBC1FF]/25 py-[12px] w-full mt-[10px] border border-[#BBC1FF]/25 placeholder-white/50 text-center mb-4 outline-none"
             />
           </div>
         </StandaloneSearchBox>

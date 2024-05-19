@@ -47,7 +47,7 @@ const Banner = () => {
           <p className="uppercase text-xs block">ABOUT US</p>
         </div>
       </div> */}
-      <div className="h-screen text-white mb-[36px] flex flex-col justify-evenly md:justify-center items-center bg-black/40">
+      <div className="h-screen text-white flex flex-col justify-evenly md:justify-center items-center bg-black/40 w-full">
         <h1 className="text-3xl md:text-4xl font-bold text-center">
           YOUR TRUSTED SOLAR PANEL PROVIDER
         </h1>
@@ -69,7 +69,6 @@ const Banner = () => {
             </button>
           </Link>
         </div> */}
-
         <QuoteForm />
 
         <div className="block md:hidden text-sm">

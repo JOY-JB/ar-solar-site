@@ -12,6 +12,7 @@ import CustomizeTabSection from "../../components/quote/customizeTabSection/Cust
 
 const QuotePage = () => {
   const [isRecommended, setIsRecommended] = useState(true);
+  const [initialCount, setInitialCount] = useState(true);
   const [panelConfig, setPanelConfig] = useState(null);
   const [paymentType, setPaymentType] = useState("cash");
   const [quoteData, setQuoteData] = useState(null);
@@ -33,7 +34,7 @@ const QuotePage = () => {
       quoteData.bill
     ) {
       const data = await fetch(
-        `https://fd60-45-127-50-28.ngrok-free.app/getImage?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=${quoteData.bill}`,
+        `https://3d5c-45-127-50-30.ngrok-free.app/getImage?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=${quoteData.bill}`,
         {
           headers: {
             "ngrok-skip-browser-warning": true,
@@ -84,22 +85,36 @@ const QuotePage = () => {
   }, [quoteData, unitPrice]);
 
   useEffect(() => {
-    if (panelConfig) {
-      const totalKWH = panelConfig?.pixel_coordinates.reduce(
-        (acc, panel, index) => {
-          if (yearlyProduction < acc) {
-            return acc;
-          }
+    if (initialCount) {
+      if (panelConfig) {
+        const totalKWH = panelConfig?.all_pixel_coordinates.reduce(
+          (acc, panel, index) => {
+            if (yearlyProduction < acc) {
+              return acc;
+            }
 
-          setPanelCount(index + 1);
-          return acc + panel.yearlyEnergyDcKwh;
-        },
-        0
-      );
+            setPanelCount(index + 1);
+            return acc + panel.yearlyEnergyDcKwh;
+          },
+          0
+        );
+
+        setTotalKWH(parseInt(totalKWH));
+
+        setInitialCount(false);
+      }
+    } else {
+      let totalKWH = 0;
+      panelConfig?.all_pixel_coordinates.map((value, index) => {
+        if (index + 1 >= panelCount) return 0;
+        totalKWH += value.yearlyEnergyDcKwh;
+      });
+
+      console.log("totalKWH", totalKWH);
 
       setTotalKWH(parseInt(totalKWH));
     }
-  }, [panelConfig]);
+  }, [panelConfig, yearlyProduction, panelCount, initialCount]);
 
   return (
     <div className="h-fit bg-gradient-to-br from-[#1B2025] from-20% to-[#08090B] text-white py-8 px-4 md:py-[92px]">
@@ -278,6 +293,13 @@ const QuotePage = () => {
                     unitPrice={unitPrice}
                     setUnitPrice={setUnitPrice}
                     systemSize={systemSize}
+                    totalKWH={totalKWH}
+                    panelCount={panelCount}
+                    setBill={(value) =>
+                      setQuoteData((prev) => ({ ...prev, bill: value }))
+                    }
+                    setPanelCount={setPanelCount}
+                    maxPanelCount={panelConfig?.all_pixel_coordinates.length}
                   />
                 </TabsContent>
               </Tabs>

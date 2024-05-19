@@ -8,20 +8,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
-import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { FaDollarSign } from "react-icons/fa6";
 
 const CustomizeTabSection = ({
   quoteData,
   unitPrice,
   setUnitPrice,
   systemSize,
+  totalKWH,
+  panelCount,
+  setBill,
+  setPanelCount,
+  maxPanelCount,
 }) => {
-  const [numberOfPanel, setNumberOfPanel] = useState(16);
+  // const [numberOfPanel, setNumberOfPanel] = useState(panelCount);
 
   const handleIncrement = () => {
-    setNumberOfPanel((prev) => {
-      if (prev < 100) {
+    setPanelCount((prev) => {
+      if (prev < maxPanelCount) {
         return prev + 1;
       }
       return prev;
@@ -29,7 +34,7 @@ const CustomizeTabSection = ({
   };
 
   const handleDecrement = () => {
-    setNumberOfPanel((prev) => {
+    setPanelCount((prev) => {
       if (prev > 0) {
         return prev - 1;
       }
@@ -90,7 +95,16 @@ const CustomizeTabSection = ({
         <div className="space-y-5 leading-7 md:leading-[50px] mt-10 md:mt-0">
           <div>
             <h2 className="text-xl md:text-2xl font-bold">Electricity Bill</h2>
-            <p className="text-xl mt-1">{quoteData?.bill || 0} Dollars</p>
+            <div className="flex rounded-md p-1 border border-gray-100 w-36 ">
+              <input
+                type="number"
+                min={0}
+                value={quoteData?.bill}
+                onChange={(e) => setBill(e.target.value)}
+                className="outline-none bg-transparent text-xl w-28"
+              />
+              <FaDollarSign size={26} className="my-auto" />
+            </div>
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold">Unit Price</h2>
@@ -99,7 +113,7 @@ const CustomizeTabSection = ({
               min={0}
               value={unitPrice}
               onChange={(e) => setUnitPrice(e.target.value)}
-              className="outline-none p-1 rounded-md border border-gray-100 bg-transparent text-xl"
+              className="outline-none p-1 rounded-md border border-gray-100 bg-transparent text-xl w-36"
             />
           </div>
           <div>
@@ -110,7 +124,7 @@ const CustomizeTabSection = ({
             <h2 className="text-xl md:text-2xl font-bold">
               Estimated Yearly Production
             </h2>
-            <p className="text-xl mt-1">9,711 kWh</p>
+            <p className="text-xl mt-1">{totalKWH} kWh</p>
           </div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold">Number of Panels</h2>
@@ -121,7 +135,8 @@ const CustomizeTabSection = ({
               <input
                 type="number"
                 min={0}
-                value={numberOfPanel}
+                // value={numberOfPanel}
+                value={panelCount}
                 readOnly
                 className="w-20 bg-transparent outline-none border-0 text-center text-xl"
               />
