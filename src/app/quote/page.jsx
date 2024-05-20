@@ -46,7 +46,7 @@ const QuotePage = () => {
       quoteData.bill
     ) {
       const data = await fetch(
-        `https://3d5c-45-127-50-30.ngrok-free.app/getImage?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=${quoteData.bill}`,
+        `https://5dca-45-127-50-30.ngrok-free.app/getImage?lat=${myLatLng.lat}&lon=${myLatLng.lng}&bill=${quoteData.bill}`,
         {
           headers: {
             "ngrok-skip-browser-warning": true,
@@ -147,7 +147,7 @@ const QuotePage = () => {
   }, [solarType, panelConfig, yearlyProduction]);
 
   useEffect(() => {
-    const equipmentCost = 2.8 * (panelCount * (solarType === "0" ? 400 : 600));
+    const equipmentCost = 2.8 * (panelCount * (solarType === "0" ? 400 : 550));
     const formattedEquipmentCost = equipmentCost.toFixed(0);
     const installationCost = (0.25 * equipmentCost).toFixed(0);
 
@@ -209,15 +209,20 @@ const QuotePage = () => {
                         parseFloat(cost.installationCost) +
                         upgradeCost
                     )
-                  : "$2,542"}
+                  : numberWithCommas(
+                      (parseFloat(cost.equipment) +
+                        parseFloat(cost.installationCost) +
+                        upgradeCost) /
+                        12
+                    )}
               </p>
               <p className="text-sm md:text-lg font-bold text-[#999999]">
-                ($1.92/watt)
+                ($2.8/watt)
               </p>
             </div>
-            <p className="text-base">
+            {/* <p className="text-base">
               * After Federal & State Incentives $30,000.50
-            </p>
+            </p> */}
           </div>
           <div className="mt-[42px]">
             <div
@@ -538,7 +543,15 @@ const QuotePage = () => {
                       Monthly Cost
                     </h3>
 
-                    <p className="text-[20px] font-bold">$2,542</p>
+                    <p className="text-[20px] font-bold">
+                      $
+                      {numberWithCommas(
+                        (parseFloat(cost.equipment) +
+                          parseFloat(cost.installationCost) +
+                          upgradeCost) /
+                          12
+                      )}
+                    </p>
                   </div>
                 </div>
               </TabsContent>
